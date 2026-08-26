@@ -2,7 +2,7 @@
 #
 # Syntax: ./tmux.sh [tmux version] [non-root user] [Update rc files flag]
 
-TMUX_VERSION=${1:-"3.5a-4.fc42"}
+TMUX_VERSION=${1:-"3.7c"}
 USERNAME=${2:-"automatic"}
 UPDATE_RC=${3:-"true"}
 
@@ -51,7 +51,11 @@ if ! rpm -q curl > /dev/null 2>&1; then
 fi
 
 # Install tmux
-curl -sSL https://rpmfind.net/linux/fedora/linux/releases/42/Everything/x86_64/os/Packages/t/tmux-${TMUX_VERSION}.x86_64.rpm -o /tmp/tmux.rpm
-dnf install -y /tmp/tmux.rpm
+curl -sSL https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -o /tmp/tmux.tar.gz
+tar -xzf /tmp/tmux.tar.gz -C /tmp
+cd /tmp/tmux-${TMUX_VERSION}
+./configure --prefix=/usr
+make
+make install
 
 echo "Done!"
