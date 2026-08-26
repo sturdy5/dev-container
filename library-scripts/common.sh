@@ -87,7 +87,13 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         vim \
         dnsutils \
         sudo \
-        diffutils"
+        diffutils \
+        gcc \
+        automake \
+        pkgconfig \
+        libevent-devel \
+        ncurses-devel \
+        make"
         
     echo "Packages to verify are installed: ${PACKAGE_LIST}"
     dnf -y install ${PACKAGE_LIST}

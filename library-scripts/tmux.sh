@@ -50,10 +50,20 @@ if ! rpm -q curl > /dev/null 2>&1; then
     dnf install -y curl
 fi
 
+# Install byacc
+
+curl -sSL https://invisible-island.net/datafiles/release/byacc.tar.gz -o /tmp/byacc.tar.gz
+tar -xzf /tmp/byacc.tar.gz -C /tmp
+# change into the byacc directory
+cd /tmp/byacc-*
+./configure --prefix=/usr
+make
+make install
 # Install tmux
-curl -sSL https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz -o /tmp/tmux.tar.gz
-tar -xzf /tmp/tmux.tar.gz -C /tmp
-cd /tmp/tmux-${TMUX_VERSION}
+cd /tmp
+git clone https://github.com/tmux/tmux.git
+cd tmux
+sh autogen.sh
 ./configure --prefix=/usr
 make
 make install
