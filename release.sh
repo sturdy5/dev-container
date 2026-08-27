@@ -7,9 +7,6 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # change to the script directory
 cd "$script_dir"
 
-# do a quick build to make sure everything is working
-./build.sh
-
 # check on the latest tag name
 latest_tag=$(gh release list --json tagName,isLatest --jq '.[] | select(.isLatest == true) | .tagName')
 # if the latest tag is empty, set it to v0.0.0
