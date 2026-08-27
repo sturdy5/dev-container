@@ -42,7 +42,7 @@ ARG HELM_VERSION="4.2.4"
 ARG TMUX_VERSION="3.7c"
 
 ENV MAVEN_HOME=/usr/share/maven
-ENV MAVEN_CONFIG="$USER_HOME_DIR/.m2"
+ENV MAVEN_CONFIG="/home/${USERNAME}/.m2"
 ENV NVM_DIR=/usr/local/share/nvm
 ENV NVM_SYMLINK_CURRENT=true \
     PATH="${NVM_DIR}/current/bin:${PATH}"
@@ -99,7 +99,7 @@ VOLUME /var/lib/containers
 VOLUME /home/podman/.local/share/containers
 
 EXPOSE 8080
-CMD sudo nginx -g 'daemon off;'
+CMD ["sudo", "nginx", "-g", "daemon off;"]
 ENV HOME=/home/${USERNAME}
 
 WORKDIR /home/${USERNAME}
